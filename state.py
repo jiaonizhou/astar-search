@@ -5,11 +5,12 @@ class State:
 		self.y_pos = y_pos
 		self.moves_so_far = []
 		self.cost_so_far = 0
+		self.astar = 0
 
-	def _str_(self):
-		state = 'Pos=(' + self.x_pos + ', ' + self.y_pos + ') Moves=['
-		for move in self.moves_so_far :
+	def __str__(self):
+		state = 'Pos=(' + str(self.x_pos) + ', ' + str(self.y_pos) + ') Moves=['
+		for move in self.moves_so_far:
 			state += "'" + move + "', "
-		state += self.moves_so_far 
-		state += '] Cost=' + self.cost_so_far
+		state = state[:-2]
+		state += '] Cost=' + str(self.cost_so_far)
 		return state

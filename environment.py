@@ -42,20 +42,22 @@ class Environment:
             self.end_y = self.height - 1
 
     def is_goal(self, candidate):
-        if (candidate.x_pos == self.end_x and candidate.y_pos == self.end_y) return True
-        else return False
+        if candidate.x_pos == self.end_x and candidate.y_pos == self.end_y:
+            return True
+        else:
+            return False
 
     def calc_astar(self, parent, child):
-        if (self.elevations[child.y_pos][child.x_pos] > self.elevations[parent.y_pos][parent.x_pos]):
+        if self.elevations[child.y_pos][child.x_pos] > self.elevations[parent.y_pos][parent.x_pos]:
             cost = 1 + (self.elevations[child.y_pos][child.x_pos] - self.elevations[parent.y_pos][parent.x_pos]) ** 2
-        elif (self.elevations[child.y_pos][child.x_pos] < self.elevations[parent.y_pos][parent.x_pos]):
+        elif self.elevations[child.y_pos][child.x_pos] < self.elevations[parent.y_pos][parent.x_pos]:
             cost = 1 + (self.elevations[parent.y_pos][parent.x_pos] - self.elevations[child.y_pos][child.x_pos])
-        else
+        else:
             cost = 1
-        heuristic = abs(self.end_x - child.x_pos) + abs(self.end_y - child.y_pos) + abs(self.elevations[end_y][end_x] - self.elevations[child.y_pos][child.x_pos])
-        child.cost_so_far = parent.cost_so_far + cost
-        astar = child.cost_so_far + heuristic
-        return (child.cost_so_far, astar)
+        heuristic = abs(self.end_x - child.x_pos) + abs(self.end_y - child.y_pos) + abs(self.elevations[self.end_y][self.end_x] - self.elevations[child.y_pos][child.x_pos])
+        cost_so_far = parent.cost_so_far + cost
+        astar = cost_so_far + heuristic
+        return (cost_so_far, astar)
 
 
 
