@@ -8,7 +8,7 @@ class Search:
 
 	def search(self):
 		frontier = [self.initial_state]
-		frontier_all = [(self.initial_state.x_pos, self.initial_state.y_pos)]
+		frontier_pos = [(self.initial_state.x_pos, self.initial_state.y_pos)]
 		visited = []
 		while frontier:
 			candidate = frontier.pop()
@@ -50,10 +50,12 @@ class Search:
 					child_w.cost_so_far = self.env.calc_astar(candidate, child_w)[0]
 					child_w.moves_so_far = candidate.moves_so_far + ['W']
 
-				l = [child for child in [child_w, child_s, child_e, child_n] if child is not None and (child.x_pos, child.y_pos) not in frontier_all]
+				l = [child for child in [child_n, child_e, child_s, child_w] if child is not None and (child.x_pos, child.y_pos) not in frontier_pos]
+
 				l.sort(key=lambda x: x.astar, reverse=True)
 				for child in l:
 					frontier.append(child)
-					frontier_all.append((child.x_pos, child.y_pos))
-		return None
+					frontier_pos.append((child.x_pos, child.y_pos))
+		
+		return (None, frontier, visited)
 
