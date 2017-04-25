@@ -57,7 +57,7 @@ class Environment:
         heuristic = abs(self.end_x - child.x_pos) + abs(self.end_y - child.y_pos) + abs(self.elevations[self.end_y][self.end_x] - self.elevations[child.y_pos][child.x_pos])
         cost_so_far = parent.cost_so_far + cost
         astar = cost_so_far + heuristic
-        return (cost_so_far, astar)
+        return [cost_so_far, astar]
 
 
 

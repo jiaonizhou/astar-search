@@ -11,6 +11,7 @@ class State:
 		state = 'Pos=(' + str(self.x_pos) + ', ' + str(self.y_pos) + ') Moves=['
 		for move in self.moves_so_far:
 			state += "'" + move + "', "
-		state = state[:-2]
+		if len(self.moves_so_far) > 0: 
+			state = state[:-2]
 		state += '] Cost=' + str(self.cost_so_far)
 		return state
