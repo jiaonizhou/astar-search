@@ -48,14 +48,14 @@ class Environment:
         
     def availableMoves(self, cur_state):
         available_moves = []
-        if cur_state.x_pos - 1 >= 0:
-            available_moves.append('W')
+        if cur_state.y_pos + 1 <= self.height - 1:
+            available_moves.append('N')
         if cur_state.x_pos + 1 <= self.width - 1:
             available_moves.append('E')
         if cur_state.y_pos - 1 >= 0:
             available_moves.append('S')
-        if cur_state.y_pos + 1 <= self.height - 1:
-            available_moves.append('N')
+        if cur_state.x_pos - 1 >= 0:
+            available_moves.append('W')
         return available_moves
         
 def main():
